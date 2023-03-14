@@ -3,12 +3,20 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
+//defining middleware to set headers
+const setHeaders = (req, res, next) => {
+  res.setHeaders('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+};
 
 
 // configure body parser
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(setHeaders);
 // create MySQL connection
 const db = mysql.createConnection({
   host: 'localhost',
@@ -27,9 +35,6 @@ db.connect((err) => {
 
 // get all users
 app.get('/api/employees', (req, res) => {
-  res.setHeader('Access-Controll-Allow-Origin', '*');
-  res.setHeader('Access-Controll-Allow-Methods', 'GET,POST,PUT,DELETE');
-  res.setHeader('Access-Controll-Allow-Headers', 'Content-Type');
 
   db.query('SELECT * FROM employees', (err, result) => {
     if (err) {
@@ -46,9 +51,6 @@ app.get('/api/employees/:ID', (req, res) => {
     if (err) {
       throw err;
     }
-    res.setHeader('Access-Controll-Allow-Origin', '*');
-    res.setHeader('Access-Controll-Allow-Methods', 'GET,POST,PUT,DELETE');
-    res.setHeader('Access-Controll-Allow-Headers', 'Content-Type');
 
     res.send(result);
   });
@@ -61,9 +63,6 @@ app.post('/api/employees', (req, res) => {
     if (err) {
       throw err;
     }
-    res.setHeader('Access-Controll-Allow-Origin', '*');
-    res.setHeader('Access-Controll-Allow-Methods', 'GET,POST,PUT,DELETE');
-    res.setHeader('Access-Controll-Allow-Headers', 'Content-Type');
 
     res.send('Employee created successfully');
   });
@@ -77,9 +76,6 @@ app.put('/api/employees/:ID', (req, res) => {
     if (err) {
       throw err;
     }
-    res.setHeader('Access-Controll-Allow-Origin', '*');
-    res.setHeader('Access-Controll-Allow-Methods', 'GET,POST,PUT,DELETE');
-    res.setHeader('Access-Controll-Allow-Headers', 'Content-Type');
 
     res.send('Employee updated successfully');
   });
@@ -92,9 +88,6 @@ app.delete('/api/employees/:ID', (req, res) => {
     if (err) {
       throw err;
     }
-    res.setHeader('Access-Controll-Allow-Origin', '*');
-    res.setHeader('Access-Controll-Allow-Methods', 'GET,POST,PUT,DELETE');
-    res.setHeader('Access-Controll-Allow-Headers', 'Content-Type');
 
     res.send('Employee deleted successfully');
   });
