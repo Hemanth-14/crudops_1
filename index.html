@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CRUD Operations Using Node.js, Ajax, and jQuery</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+	<h1>CRUD Operations Using Node.js, Ajax, and jQuery</h1>
+	<form>
+		<label for="id">ID:</label>
+		<input type="text" id="id" name="ID">
+		<br><br>
+		<label for="text">first_name:</label>
+		<input type="text" id="first_name" name="first_name">
+		<br><br>
+		<label for="last_name">last_name:</label>
+		<input type="text" id="last_name" name="last_name">
+		<br><br>
+                <label for="designation">designation:</label>
+                <input type="text" id="designation" name="designation">
+		<button type="button" id="btnCreate">Create</button>
+		<button type="button" id="btnRead">Read</button>
+		<button type="button" id="btnUpdate">Update</button>
+		<button type="button" id="btnDelete">Delete</button>
+	</form>
+	<br>
+	<table border="1" id="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>first_name</th>
+				<th>last_name</th>
+                                <th>designation</th>  
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	<script src="script.js"></script>
+</body>
+</html>
