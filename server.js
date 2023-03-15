@@ -63,7 +63,6 @@ app.post('/api/employees', (req, res) => {
     if (err) {
       throw err;
     }
-
     res.send('Employee created successfully');
   });
 });
