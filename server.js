@@ -3,6 +3,7 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
+const path = require('path');
 //defining middleware to set headers
 const setHeaders = (req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -31,6 +32,10 @@ db.connect((err) => {
     throw err;
   }
   console.log('Connected to MySQL database');
+});
+// handle default route
+app.get('/', function(req, res)) {
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 // get all users
