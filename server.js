@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 //defining middleware to set headers
 const setHeaders = (req, res, next) => {
-  res.setHeaders('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   next();
