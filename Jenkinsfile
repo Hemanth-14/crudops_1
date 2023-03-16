@@ -5,7 +5,6 @@ pipeline {
       steps {
         sh 'npm run build' // build your application
         sh 'echo Build completed successfully'
-        sh 'mkdir -production /var/www/html' // create the production directory
         sh 'cp index.html /var/www/html' // copy the index.html file to the production directory
       }
     }
