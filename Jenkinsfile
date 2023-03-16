@@ -1,33 +1,23 @@
 pipeline {
-    agent any
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout([$class: 'GitSCM', 
-                    branches: [[name: '*/nodejs']],
-                    userRemoteConfigs: [[url: 'https://github.com/Hemanth-14/crudops_1.git']]])
-            }
-        }
-        stage('Install dependencies') {
-            steps {
-                sh 'npm install'
-            
-            }
-        }
-        stage('build') {
-            steps {
-                sh 'npm run build'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'npm test'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'npm start'
-            }
-        }
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        sh 'npm run build' // build your application
+        sh 'mkdir -p /var/www/html' // create the production directory
+        sh 'cp index.html /var/www/html' // copy the index.html file to the production directory
+      }
     }
+    stage('Test') {
+      steps {
+        sh 'node server.js' // run your tests
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'scp -r /var/www/html user@server:/var/www/html' // deploy your application
+      }
+    }
+  }
 }
+
