@@ -16,7 +16,7 @@ pipeline {
     stage('Deploy') {
       steps {
          sh 'node server.js'// deploy your application
-         sh 'scp -r /var/www/html root@server:/var/www/html' // deploy your application
+         sh 'scp -r /var/www/html user@171.76.81.181:/var/www/html' // deploy your application
 
       }
     }
