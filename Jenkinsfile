@@ -15,7 +15,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh 'scp -r /var/www/html user@localhost:3000:/var/www/html' // deploy your application
+         // deploy your application
       }
     }
   }
