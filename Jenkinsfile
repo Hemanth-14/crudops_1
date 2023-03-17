@@ -15,7 +15,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-         // deploy your application
+         sh 'node server.js'// deploy your application
       }
     }
   }
